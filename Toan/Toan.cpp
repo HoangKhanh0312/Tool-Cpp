@@ -28,6 +28,8 @@ public:
 			<< "4.Ty le nghich\n"
 			<< "5.Lam tron \n"
 			<< "6.Tinh tong day so cach deu\n"
+			<< "7.Cac phep tinh don gian\n"
+			<< "8.Sap xep\n"
 			<< "0.Quay lai\n"
 			<< "=>";
 		std::cin >> pick;
@@ -35,6 +37,10 @@ public:
 		if (pick == 6)
 		{
 			tdscd();
+		}
+		else if(pick == 7)
+		{
+			pickp();
 		}
 		else if (pick == 1)
 		{
@@ -86,10 +92,198 @@ public:
 			symbol();
 			toanso();
 		}
+		else if(pick == 8)
+		{
+			sxp();
+		}
 		else
 		{
 			toanso();
 		}
+	}
+	//
+	//sx
+	void sxp()
+	{
+		int check;
+		std::cout<<"1.Tu be den lon\n"
+				 <<"2.Tu lon den be\n"
+				 <<"0.Quay lai\n"
+				 <<"=>";
+		std::cin>>check;
+		symres();
+		if(check == 0)
+		{
+			toanso();
+		}
+		else if(check == 1)
+		{
+			bdl();
+		}
+		else if(check==2)
+		{
+			lbd();
+		}
+	}
+	void bdl()
+	{
+		int z,size;
+		std::cout<<"Co bao nhieu so can sap xep ?\n=>";
+		std::cin>>z;
+		symres();
+		double numbers[9000];
+		for(int i=1;i <= z;i++)
+		{
+			std::cout<<"Nhap so thu "<<i<<":";
+			std::cin>>numbers[i];
+		}
+		size = sizeof(numbers)/sizeof(numbers[0]);			
+		for(int z=0;z < size-1;z++)
+		{
+			for(int j=0;j <size-z-1;j++)
+			{
+				if(numbers[j] > numbers[j+1])
+				{
+					double temp = numbers[j];
+					numbers[j] = numbers[j+1];
+					numbers[j+1]=temp;
+				}
+			}
+		}
+		symres();
+		std::cout<<"KQ:";
+		for(double show:numbers)
+		{
+			std::cout<<show<<" "<<"\n";
+		}
+		symbol();
+		sxp();
+	}
+	void lbd()
+	{
+
+	}
+	//
+	//cal
+	void pickp()
+	{
+		std::string choose;
+		std::cout<<"+,-,x,:,q\n=>";
+		std::cin>>choose;
+		symbol();
+		if(choose == "+")
+		{
+			increments();
+		}
+		else if(choose == "-")
+		{
+			subtraction();
+		}
+		else if(choose == "x" || choose == "*")
+		{
+			multiply();
+		}
+		else if(choose == ":" || choose == "/")
+		{
+			divide();
+		}
+		else if(choose == "q")
+		{
+			toanso();
+		}
+		else 
+		{
+			pickp();
+		}
+	}
+	void increments()
+	{
+		int z;
+		std::cout<<"Co bao nhieu so can cong ?\n=>";
+		std::cin>>z;
+		double s[9000],sum;
+		for(int i=1;i < z+1;i++)
+		{
+			std::cout<<"Nhap so thu "<<i<<":";
+			std::cin>>s[i];
+			sum += s[i];
+		}
+		symres();
+		std::cout<<"KQ:"<<sum<<"\n";
+		symbol();
+		pickp();
+	}
+	void subtraction()
+	{
+		int z;
+		double numbers[9000],sub;
+		std::cout<<"Co bao nhieu so can de tru\n=>";
+		std::cin>>z;
+		for(int i=1;i <= z;i++)
+		{
+			std::cout<<"Nhap so thu "<<i<<":";
+			std::cin>>numbers[i];
+			if(i == 1)
+			{
+				sub = numbers[i];
+			}
+			else 
+			{
+				sub -= numbers[i];
+			}
+		}
+		symres();
+		std::cout<<"KQ:"<<sub<<"\n";
+		symbol();
+		pickp();
+	}
+	void multiply()
+	{
+		int z;
+		double numbers[9000],sub;
+		std::cout<<"Co bao nhieu so can de nhan\n=>";
+		std::cin>>z;
+		for(int i=1;i <= z;i++)
+		{
+			std::cout<<"Nhap so thu "<<i<<":";
+			std::cin>>numbers[i];
+			if(i == 1)
+			{
+				sub = numbers[i];
+			}
+			else 
+			{
+				sub *= numbers[i];
+			}
+		}
+		symres();
+		std::cout<<"KQ:"<<sub<<"\n";
+		symbol();
+		pickp();
+	}
+	void divide()
+	{
+		int z;
+		double numbers[9000],sub;
+		std::cout<<"Co bao nhieu so can de chia\n=>";
+		std::cin>>z;
+		for(int i=1;i <= z;i++)
+		{
+			std::cout<<"Nhap so thu "<<i<<":";
+			std::cin>>numbers[i];
+			if(i == 1)
+			{
+				sub = numbers[i];
+			}
+			else 
+			{
+				sub /= numbers[i];
+			}
+		}
+		symres();
+		std::cout<<"KQ:"<<sub<<"\n";
+		symbol();
+		pickp();
 	}
 	//
 	void tlt()
@@ -206,6 +400,99 @@ class th
 public:
 	double show;
 	std::string donvi;
+	//tu giac 
+	void xdtgc()
+	{
+		int choose;
+		std::cout<<"1.Xac dinh qua so do goc\n"
+				 <<"2.Xac dinh qua so do duong cheo\n"
+				 <<"0.Quay lai\n"
+				 <<"=>";
+		std::cin>>choose;
+		symbol();
+		if(choose == 0)
+		{
+			ht();
+		}
+		else if(choose == 1)
+		{
+			double g1,g2;
+			std::cout<<"Nhap so do goc 1:";
+			std::cin>>g1;
+			std::cout<<"Nhap so do goc 2:";
+			std::cin>>g2;
+			symres();
+			if(g1 == g2)
+			{
+				std::cout<<"Day la hinh thang can !\n";
+				symbol();
+				xdtgc();
+			}
+			else
+			{
+				std::cout<<"Day khong phai la hinh thang can !\n";
+				symbol();
+				xdtgc();
+			}
+		}
+		else if(choose == 2)
+		{
+			double dc1,dc2;
+			std::cout<<"Nhap so do duong cheo 1:";
+			std::cin>>dc1;
+			std::cout<<"Nhap so do duong cheo 2:";
+			std::cin>>dc2;
+			symres();
+			if(dc1 == dc2)
+			{
+				std::cout<<"Day la hinh thang can !\n";
+				symbol();
+				xdtgc();
+			}
+			else
+			{
+				std::cout<<"Day khong phai la hinh thang can !\n";
+				symbol();
+				xdtgc();
+			}
+		}
+	}
+	//
+	//Tu giac choose
+	void hbh()
+	{
+
+	}
+	void ht()
+	{
+		int choose;
+		std::cout<<"1.Xac dinh hinh thang can\n"
+				 <<"2.Xac dinh hinh thang vuong\n"
+				 <<"0.Quay lai\n";
+		std::cin>>choose;
+		symbol();
+		if(choose == 0)
+		{
+			tugiac();
+		}
+		else if(choose == 1)
+		{
+			xdtgc();
+		}
+	}
+	void hcn()
+	{
+
+	}
+	void hv()
+	{
+
+	}
+	void hthoi()
+	{
+
+	}
+	//
 	//S
 	double svuong(double c) {
 		return pow(c, 2);
@@ -317,6 +604,8 @@ public:
 			std::cin>>c1;
 			std::cout<<"Nhap so do canh 2:";
 			std::cin>>c2;
+			std::cout<<"Nhap don vi:";
+			std::cin>>donvi;
 			symres();
 			res=sqrt(pow(c1,2)+pow(c2,2));
 			std::cout<<"KQ:"<<res<<"\n";
@@ -357,6 +646,7 @@ public:
 	}
 	//
 	//Option
+	
 	void tamgiac()
 	{
 		int pick;
@@ -516,6 +806,64 @@ public:
 			sxq();
 		}
 	}
+	void tugiac()
+	{
+		int choose;
+		std::cout<<"1.Tinh goc\n"
+				 <<"2.Hinh thang\n"
+				 <<"3.Hinh binh hanh\n"
+				 <<"4.Hinh thoi\n"
+				 <<"5.Hinh chu nhat\n"
+				 <<"6.Hinh vuong\n"
+				 <<"0.Quay lai\n"
+				 <<"=>";
+		std::cin>>choose;
+		symbol();
+		if(choose == 1)
+		{
+			double g1,g3,g2,g4;
+			std::cout<<"Nhap so do goc 1:";
+			std::cin>>g1;
+			std::cout<<"Nhap so do goc 2:";
+			std::cin>>g2;
+			std::cout<<"Nhap so do goc 3:";
+			std::cin>>g3;
+			std::cout<<"Nhap don vi:";
+			std::cin>>donvi;
+			symres();
+			g4 = 360-g1-g2-g3;
+			std::cout<<"KQ:"<<g4<<donvi<<"\n";
+			symbol();
+		}
+		else if(choose == 2)
+		{
+			ht();
+		}
+		else if(choose == 3)
+		{
+			hbh();
+		}
+		else if(choose == 4)
+		{
+			hthoi();
+		}
+		else if(choose == 5)
+		{
+			hcn();
+		}
+		else if(choose == 6)
+		{
+			hv();
+		}
+		else if(choose == 0)
+		{
+			toanhinh();
+		}
+		else
+		{
+			tugiac();
+		}
+	}
 	void stp()
 	{
 		int choose;
@@ -607,14 +955,15 @@ public:
 	void s()
 	{
 		int choose;
-		std::cout << "1.Hinh vuong\n"
-			<< "2.Hinh chu nhat\n"
-			<< "3.Hinh tam giac \n"
-			<< "4.Hinh tron\n"
-			<< "5.Hinh thang\n"
-			<< "6.Hinh thoi\n"
-			<< "7.Dien tich xung quanh\n"
-			<< "8.Dien tich toan phan\n"
+		std::cout<< "1.Dien tich xung quanh\n"
+			<< "2.Dien tich toan phan\n"
+			<< "3.Hinh vuong\n"
+			<< "4.Hinh chu nhat\n"
+			<< "5.Hinh tam giac \n"
+			<< "6.Hinh tron\n"
+			<< "7.Hinh thang\n"
+			<< "8.Hinh thoi\n"
+			<<"9.Hinh binh hanh\n"
 			<< "0.Quay lai\n"
 			<< "=>";
 		std::cin >> choose;
@@ -623,7 +972,7 @@ public:
 		{
 			toanhinh();
 		}
-		if (choose == 1)
+		if (choose == 3)
 		{
 			double c;
 			std::cout << "Nhap so do canh:";
@@ -636,7 +985,7 @@ public:
 			symbol();
 			s();
 		}
-		else if (choose == 2)
+		else if (choose == 4)
 		{
 			double cd, cr;
 			std::cout << "Nhap chieu dai:";
@@ -651,7 +1000,7 @@ public:
 			symbol();
 			s();
 		}
-		else if (choose == 3)
+		else if (choose == 5)
 		{
 			double d, cc;
 			std::cout << "Nhap so do canh 1:";
@@ -666,7 +1015,7 @@ public:
 			symbol();
 			s();
 		}
-		else if (choose == 5)
+		else if (choose == 7)
 		{
 			double dl, db, cc;
 			std::cout << "Nhap so do day lon:";
@@ -683,7 +1032,7 @@ public:
 			symbol();
 			s();
 		}
-		else if (choose == 4)
+		else if (choose == 6)
 		{
 			double bk;
 			std::cout << "Nhap ban kinh:";
@@ -696,7 +1045,7 @@ public:
 			symbol();
 			s();
 		}
-		else if (choose == 6)
+		else if (choose == 8)
 		{
 			double dc1, dc2;
 			std::cout << "Nhap duong cheo 1:";
@@ -711,11 +1060,26 @@ public:
 			symbol();
 			s();
 		}
-		else if (choose == 7)
+		else if(choose == 9)
+		{
+			double cd,cc;
+			std::cout<<"Nhap so do canh day:";
+			std::cin>>cd;
+			std::cout<<"Nhap so do chieu cao:";
+			std::cin>>cc;
+			std::cout<<"Nhap don vi:";
+			std::cin>>donvi;
+			show=schunhat(cd,cc);
+			symres();
+			std::cout<<"KQ:"<<show<<donvi<<"^2\n";
+			symbol();
+			s();
+		}
+		else if (choose == 1)
 		{
 			sxq();
 		}
-		else if (choose == 8)
+		else if (choose == 2)
 		{
 			stp();
 		}
@@ -733,12 +1097,14 @@ public:
 			<<"4.Hinh tron\n"
 			<<"5.Hinh thang\n"
 			<<"6.Hinh thoi\n"
+			<<"7.Hinh binh hanh\n"
 			<<"0.Quay lai\n"
 			<<"=>";
 		std::cin >> pick;
 		symbol();
 		switch (pick)
 		{
+
 		case 0:
 			toanhinh();
 		case 1:
@@ -822,6 +1188,21 @@ public:
 			symres();
 			show = p_vuong(ct);
 			std::cout << "KQ:" << show << donvi << "\n";
+			symbol();
+			p();
+			break;
+			
+		case 7:
+			double cd2,cr2;
+			std::cout<<"Nhap so do chieu dai:";
+			std::cin>>cd2;
+			std::cout<<"Nhap so do chieu rong:";
+			std::cin>>cr2;
+			std::cout<<"Nhap don vi:";
+			std::cin>>donvi;
+			symres();
+			show = p_chunhat(cd2,cr2);
+			std::cout<<"KQ:"<<show<<donvi<<"\n";
 			symbol();
 			p();
 			break;
@@ -913,6 +1294,7 @@ void toanhinh()
 		<< "2.Tinh chu vi \n"
 		<< "3.Tinh the tich \n"
 		<< "4.Cac bai toan ve tam giac\n"
+		<<"5.Cac bai tap lien quan den tu giac\n"
 		<< "0.Quay lai \n"
 		<< "=>";
 	std::cin >> choose;
@@ -932,6 +1314,10 @@ void toanhinh()
 	else if (choose == 4)
 	{
 		test->tamgiac();
+	}
+	else if(choose == 5)
+	{
+		test->tugiac();
 	}
 	else if (choose == 0)
 	{
